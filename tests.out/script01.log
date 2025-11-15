@@ -1,101 +1,14 @@
-==31568== Memcheck, a memory error detector
-==31568== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==31568== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==31568== Command: ./bin/execute_script script01
-==31568== 
-==31568== Invalid read of size 4
-==31568==    at 0x109628: add_mats_sf (hw7.c:72)
-==31568==    by 0x109FB2: evaluate_expr_sf (hw7.c:310)
-==31568==    by 0x10A38A: execute_script_sf (hw7.c:391)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568==  Address 0x4 is not stack'd, malloc'd or (recently) free'd
-==31568== 
-==31568== 
-==31568== Process terminating with default action of signal 11 (SIGSEGV)
-==31568==  Access not within mapped region at address 0x4
-==31568==    at 0x109628: add_mats_sf (hw7.c:72)
-==31568==    by 0x109FB2: evaluate_expr_sf (hw7.c:310)
-==31568==    by 0x10A38A: execute_script_sf (hw7.c:391)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568==  If you believe this happened as a result of a stack
-==31568==  overflow in your program's main thread (unlikely but
-==31568==  possible), you can try to increase the size of the
-==31568==  main thread stack using the --main-stacksize= flag.
-==31568==  The main thread stack size used in this run was 8388608.
-==31568== 
-==31568== HEAP SUMMARY:
-==31568==     in use at exit: 4,896 bytes in 9 blocks
-==31568==   total heap usage: 10 allocs, 1 frees, 4,904 bytes allocated
-==31568== 
-==31568== 8 bytes in 1 blocks are still reachable in loss record 1 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x109A83: infix2postfix_sf (hw7.c:178)
-==31568==    by 0x109E39: evaluate_expr_sf (hw7.c:284)
-==31568==    by 0x10A38A: execute_script_sf (hw7.c:391)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 24 bytes in 1 blocks are still reachable in loss record 2 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x109462: insert_bst_sf (hw7.c:6)
-==31568==    by 0x10A366: execute_script_sf (hw7.c:388)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 24 bytes in 1 blocks are still reachable in loss record 3 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x10949C: insert_bst_sf (hw7.c:12)
-==31568==    by 0x10A366: execute_script_sf (hw7.c:388)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 32 bytes in 1 blocks are still reachable in loss record 4 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x109E59: evaluate_expr_sf (hw7.c:285)
-==31568==    by 0x10A38A: execute_script_sf (hw7.c:391)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 120 bytes in 1 blocks are still reachable in loss record 5 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x48EFD84: getdelim (iogetdelim.c:65)
-==31568==    by 0x10A3C4: execute_script_sf (hw7.c:370)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 120 bytes in 2 blocks are still reachable in loss record 6 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x10996E: create_matrix_sf (hw7.c:148)
-==31568==    by 0x10A34F: execute_script_sf (hw7.c:387)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 472 bytes in 1 blocks are still reachable in loss record 7 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x48EEE7E: __fopen_internal (iofopen.c:65)
-==31568==    by 0x48EEE7E: fopen@@GLIBC_2.2.5 (iofopen.c:86)
-==31568==    by 0x10A23E: execute_script_sf (hw7.c:364)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== 4,096 bytes in 1 blocks are still reachable in loss record 8 of 8
-==31568==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31568==    by 0x48EE1B4: _IO_file_doallocate (filedoalloc.c:101)
-==31568==    by 0x48FE523: _IO_doallocbuf (genops.c:347)
-==31568==    by 0x48FB883: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
-==31568==    by 0x48EFE0F: getdelim (iogetdelim.c:77)
-==31568==    by 0x10A3C4: execute_script_sf (hw7.c:370)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568== 
-==31568== LEAK SUMMARY:
-==31568==    definitely lost: 0 bytes in 0 blocks
-==31568==    indirectly lost: 0 bytes in 0 blocks
-==31568==      possibly lost: 0 bytes in 0 blocks
-==31568==    still reachable: 4,896 bytes in 9 blocks
-==31568==         suppressed: 0 bytes in 0 blocks
-==31568== 
-==31568== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-==31568== 
-==31568== 1 errors in context 1 of 1:
-==31568== Invalid read of size 4
-==31568==    at 0x109628: add_mats_sf (hw7.c:72)
-==31568==    by 0x109FB2: evaluate_expr_sf (hw7.c:310)
-==31568==    by 0x10A38A: execute_script_sf (hw7.c:391)
-==31568==    by 0x1093EE: main (execute_script.c:8)
-==31568==  Address 0x4 is not stack'd, malloc'd or (recently) free'd
-==31568== 
-==31568== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-Segmentation fault (core dumped)
+==34894== Memcheck, a memory error detector
+==34894== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==34894== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==34894== Command: ./bin/execute_script script01
+==34894== 
+3 4 6 27 4 -26 32 30 39 20 93 -47 -88 -2
+==34894== 
+==34894== HEAP SUMMARY:
+==34894==     in use at exit: 0 bytes in 0 blocks
+==34894==   total heap usage: 14 allocs, 14 frees, 9,144 bytes allocated
+==34894== 
+==34894== All heap blocks were freed -- no leaks are possible
+==34894== 
+==34894== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

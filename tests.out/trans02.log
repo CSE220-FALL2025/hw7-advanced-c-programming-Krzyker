@@ -1,32 +1,13 @@
-==31921== Memcheck, a memory error detector
-==31921== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==31921== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==31921== Command: ./bin/trans02
-==31921== 
-==31921== Invalid read of size 4
-==31921==    at 0x10981B: transpose_mat_sf (hw7.c:117)
-==31921==    by 0x1093A7: main (trans02.c:5)
-==31921==  Address 0x4a7e094 is 0 bytes after a block of size 84 alloc'd
-==31921==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31921==    by 0x10A3D4: copy_matrix (hw7.c:406)
-==31921==    by 0x109397: main (trans02.c:4)
-==31921== 
-==31921== 
-==31921== HEAP SUMMARY:
-==31921==     in use at exit: 0 bytes in 0 blocks
-==31921==   total heap usage: 2 allocs, 2 frees, 168 bytes allocated
-==31921== 
-==31921== All heap blocks were freed -- no leaks are possible
-==31921== 
-==31921== ERROR SUMMARY: 9 errors from 1 contexts (suppressed: 0 from 0)
-==31921== 
-==31921== 9 errors in context 1 of 1:
-==31921== Invalid read of size 4
-==31921==    at 0x10981B: transpose_mat_sf (hw7.c:117)
-==31921==    by 0x1093A7: main (trans02.c:5)
-==31921==  Address 0x4a7e094 is 0 bytes after a block of size 84 alloc'd
-==31921==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==31921==    by 0x10A3D4: copy_matrix (hw7.c:406)
-==31921==    by 0x109397: main (trans02.c:4)
-==31921== 
-==31921== ERROR SUMMARY: 9 errors from 1 contexts (suppressed: 0 from 0)
+==35126== Memcheck, a memory error detector
+==35126== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==35126== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==35126== Command: ./bin/trans02
+==35126== 
+==35126== 
+==35126== HEAP SUMMARY:
+==35126==     in use at exit: 0 bytes in 0 blocks
+==35126==   total heap usage: 2 allocs, 2 frees, 168 bytes allocated
+==35126== 
+==35126== All heap blocks were freed -- no leaks are possible
+==35126== 
+==35126== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

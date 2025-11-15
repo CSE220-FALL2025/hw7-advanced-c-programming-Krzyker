@@ -114,7 +114,7 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
 
     for(int i = 0; i < mat->num_rows; i++) {
         for(int j = 0; j < mat-> num_cols; j++) {
-            result->values[j * result->num_rows + i] = mat->values[i * result->num_cols + j];
+            result->values[j * mat->num_rows + i] = mat->values[i * mat->num_cols + j];
         }
     }
 
@@ -175,8 +175,9 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
 }
 
 char* infix2postfix_sf(char *infix) {
-    char* post = malloc(strlen(infix) + 1);
-    char* stack = malloc(strlen(infix) + 1);
+    int len = strlen(infix);
+    char* post = malloc(len + 1);
+    char* stack = malloc(len + 1);
 
     int post_index = 0;
     char *p = infix;
@@ -282,11 +283,12 @@ char* infix2postfix_sf(char *infix) {
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
     char* post = infix2postfix_sf(expr);
-    matrix_sf **stack = malloc(sizeof(matrix_sf*) * (strlen(post) + 1));
+    int len = strlen(post);
+    matrix_sf **stack = malloc(sizeof(matrix_sf*) * (len + 1));
 
     int pop = 0;
 
-    for(int i = 0; i < strlen(post); i++) {
+    for(int i = 0; i < len; i++) {
         char curr = post[i];
         if (curr >= 'A' && curr <= 'Z') {                   //MATRIX CASE
             matrix_sf *mat = find_bst_sf(curr, root);
@@ -362,6 +364,10 @@ matrix_sf *execute_script_sf(char *filename) {
     
     char *str = NULL;
     FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        free(str);
+        return NULL;
+    }
     size_t max_line_size = MAX_LINE_LEN; // defined in hw7.h
 
     matrix_sf *result = NULL;
@@ -369,9 +375,10 @@ matrix_sf *execute_script_sf(char *filename) {
 
     while (getline(&str, &max_line_size, file) != -1) {
         char name = '\0';
-        for(int i = 0; i < strlen(str); i++) { //finding name if spaces in front
+        int len = strlen(str);
+        for(int i = 0; i < len; i++) { //finding name if spaces in front
             if (str[i] >= 'A' && str[i] <= 'Z') {
-                char name = str[i];
+                name = str[i];
                 break;
             }
         }
@@ -394,10 +401,14 @@ matrix_sf *execute_script_sf(char *filename) {
         }
     }
 
+    //Attempting to free all of BST except the last matrix
+    matrix_sf *last = copy_matrix(result-> num_rows, result-> num_cols, result-> values);
+
+    free_bst_sf(root);
     free(str);
     fclose(file);
 
-    return result;
+    return last;
 }
 
 // This is a utility function used during testing. Feel free to adapt the code to implement some of
