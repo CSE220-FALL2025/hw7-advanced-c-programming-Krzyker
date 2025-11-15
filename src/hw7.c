@@ -299,6 +299,7 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
             matrix_sf *before = stack[pop - 1];
             matrix_sf *after = transpose_mat_sf(before);
             stack[pop - 1] = after;
+            if (before->name == 't') //don't free if original
             free(before);
             continue;
         }
@@ -308,7 +309,11 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
             matrix_sf *m2 = stack[pop - 1];
             matrix_sf *sum = add_mats_sf(m1, m2);
             stack[pop - 2] = sum;
-            free(m1); free(m2);
+
+            if (m1->name == 't') //don't free if original
+            free(m1); 
+            if (m2->name == 't') //don't free if original
+            free(m2);
             pop--; //went 2 back
             continue;
         }
@@ -318,15 +323,38 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
             matrix_sf *m2 = stack[pop - 1];
             matrix_sf *product = mult_mats_sf(m1, m2);
             stack[pop - 2] = product;
-            free(m1); free(m2);
+
+            if (m1->name == 't') //don't free if original
+            free(m1); 
+            if (m2->name == 't') //don't free if original
+            free(m2);
             pop--; //went 2 back
             continue;
         }
     }
-    matrix_sf *result= stack[0]; //finished
-    result -> name= name; //from arguments
+
+    if (pop != 1) {
+        free(stack);
+        free(post);
+        return NULL;
+    }
+
+    matrix_sf *result= stack[pop - 1]; //finished
     free(stack); free(post);
 
+    if (result->name == 't') { //name from arguments case
+        result->name = name; 
+    } else { //copy with correct name case because original gets wiped
+        matrix_sf *named = malloc(sizeof(matrix_sf) + result-> num_rows * result-> num_cols * sizeof(int));
+        named -> name = name;
+        named -> num_rows = result -> num_rows;
+        named -> num_cols = result -> num_cols;
+
+        for(int i = 0; i < result-> num_rows * result-> num_cols; i++) {
+            named -> values[i] = result -> values[i];
+        }
+        return named;
+    }
     return result;
 }
 
@@ -345,7 +373,7 @@ matrix_sf *execute_script_sf(char *filename) {
 
         //get to first digit
         expr += 1;
-        while (*expr == ' ') {
+        while (isspace(*expr)) {
             expr++;
         }
         //declaration vs computation

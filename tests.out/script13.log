@@ -1,26 +1,26 @@
-==23649== Memcheck, a memory error detector
-==23649== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==23649== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==23649== Command: ./bin/execute_script script13
-==23649== 
+==27866== Memcheck, a memory error detector
+==27866== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==27866== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==27866== Command: ./bin/execute_script script13
+==27866== 
 execute_script: src/hw7.c:56: print_matrix_sf: Assertion `mat != NULL' failed.
-==23649== 
-==23649== Process terminating with default action of signal 6 (SIGABRT)
-==23649==    at 0x4907B2C: __pthread_kill_implementation (pthread_kill.c:44)
-==23649==    by 0x4907B2C: __pthread_kill_internal (pthread_kill.c:78)
-==23649==    by 0x4907B2C: pthread_kill@@GLIBC_2.34 (pthread_kill.c:89)
-==23649==    by 0x48AE27D: raise (raise.c:26)
-==23649==    by 0x48918FE: abort (abort.c:79)
-==23649==    by 0x489181A: __assert_fail_base.cold (assert.c:96)
-==23649==    by 0x48A4516: __assert_fail (assert.c:105)
-==23649==    by 0x1094F1: print_matrix_sf (hw7.c:56)
-==23649==    by 0x109324: main (execute_script.c:9)
-==23649== 
-==23649== HEAP SUMMARY:
-==23649==     in use at exit: 0 bytes in 0 blocks
-==23649==   total heap usage: 5 allocs, 5 frees, 1,936 bytes allocated
-==23649== 
-==23649== All heap blocks were freed -- no leaks are possible
-==23649== 
-==23649== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==27866== 
+==27866== Process terminating with default action of signal 6 (SIGABRT)
+==27866==    at 0x4907B2C: __pthread_kill_implementation (pthread_kill.c:44)
+==27866==    by 0x4907B2C: __pthread_kill_internal (pthread_kill.c:78)
+==27866==    by 0x4907B2C: pthread_kill@@GLIBC_2.34 (pthread_kill.c:89)
+==27866==    by 0x48AE27D: raise (raise.c:26)
+==27866==    by 0x48918FE: abort (abort.c:79)
+==27866==    by 0x489181A: __assert_fail_base.cold (assert.c:96)
+==27866==    by 0x48A4516: __assert_fail (assert.c:105)
+==27866==    by 0x1094F1: print_matrix_sf (hw7.c:56)
+==27866==    by 0x109324: main (execute_script.c:9)
+==27866== 
+==27866== HEAP SUMMARY:
+==27866==     in use at exit: 0 bytes in 0 blocks
+==27866==   total heap usage: 5 allocs, 5 frees, 1,936 bytes allocated
+==27866== 
+==27866== All heap blocks were freed -- no leaks are possible
+==27866== 
+==27866== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 Aborted (core dumped)
