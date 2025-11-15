@@ -288,8 +288,46 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
 
     for(int i = 0; i < strlen(post); i++) {
         char curr = post[i];
-        
+        if (curr >= 'A' && curr <= 'Z') {                   //MATRIX CASE
+            matrix_sf *mat = find_bst_sf(curr, root);
+            stack[pop] = mat;
+            pop++;
+            continue;
+        }
+
+        if (curr == '\'') {                                 //TRANSPOSE CASE
+            matrix_sf *before = stack[pop - 1];
+            matrix_sf *after = transpose_mat_sf(before);
+            stack[pop - 1] = after;
+            free(before);
+            continue;
+        }
+
+        if (curr == '+') {                                  //ADD CASE
+            matrix_sf *m1 = stack[pop - 2];
+            matrix_sf *m2 = stack[pop - 1];
+            matrix_sf *sum = add_mats_sf(m1, m2);
+            stack[pop - 2] = sum;
+            free(m1); free(m2);
+            pop--; //went 2 back
+            continue;
+        }
+
+        if (curr == '*') {                                  //MULTIPLY CASE
+            matrix_sf *m1 = stack[pop - 2];
+            matrix_sf *m2 = stack[pop - 1];
+            matrix_sf *product = mult_mats_sf(m1, m2);
+            stack[pop - 2] = product;
+            free(m1); free(m2);
+            pop--; //went 2 back
+            continue;
+        }
     }
+    matrix_sf *result= stack[0]; //finished
+    result -> name= name; //from arguments
+    free(stack); free(post);
+    
+    return result;
 }
 
 matrix_sf *execute_script_sf(char *filename) {
