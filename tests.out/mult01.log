@@ -1,0 +1,13 @@
+==37265== Memcheck, a memory error detector
+==37265== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==37265== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==37265== Command: ./bin/mult01
+==37265== 
+==37265== 
+==37265== HEAP SUMMARY:
+==37265==     in use at exit: 0 bytes in 0 blocks
+==37265==   total heap usage: 3 allocs, 3 frees, 412 bytes allocated
+==37265== 
+==37265== All heap blocks were freed -- no leaks are possible
+==37265== 
+==37265== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

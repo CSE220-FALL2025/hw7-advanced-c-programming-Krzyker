@@ -1,0 +1,13 @@
+==37277== Memcheck, a memory error detector
+==37277== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==37277== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==37277== Command: ./bin/trans01
+==37277== 
+==37277== 
+==37277== HEAP SUMMARY:
+==37277==     in use at exit: 0 bytes in 0 blocks
+==37277==   total heap usage: 2 allocs, 2 frees, 152 bytes allocated
+==37277== 
+==37277== All heap blocks were freed -- no leaks are possible
+==37277== 
+==37277== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
