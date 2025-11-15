@@ -434,5 +434,5 @@ void print_matrix_sf(matrix_sf *mat) {
         if (i < mat->num_rows*mat->num_cols-1)
             printf(" ");
     }
-    printf("\n");
+    printf("\r\n");
 }
