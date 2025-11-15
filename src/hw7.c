@@ -98,7 +98,7 @@ matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
                 sum += mat1->values[i * mat1-> num_cols + k] * mat2-> values[k * mat2-> num_cols + j];
             }
 
-            result -> values[i * mat2-> num_cols + j] = result;
+            result -> values[i * mat2-> num_cols + j] = sum;
         }
     }
 
@@ -114,7 +114,7 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
 
     for(int i = 0; i < mat->num_rows; i++) {
         for(int j = 0; j < mat-> num_cols; j++) {
-            result->values[j *result->num_cols + i] = mat->values[i*result-> num_cols + j];
+            result->values[j * result->num_rows + i] = mat->values[i * result->num_cols + j];
         }
     }
 
@@ -183,7 +183,7 @@ char* infix2postfix_sf(char *infix) {
     int pop = 0;
 
     while(*p != '\0') {
-        if (isspace(*p)) {
+        if (*p != '\0' && isspace(*p)) {
             p++;
             continue;
         }
@@ -194,8 +194,8 @@ char* infix2postfix_sf(char *infix) {
             post_index++; p++;
 
             //transpose check
-            while (true) { //while fix for multiple transpose check
-                    while (isspace(*p)) {
+            while (1) { //while fix for multiple transpose check
+                    while (*p != '\0' && isspace(*p)) {
                         p++;
                     }
                 if (*p == '\'') {
@@ -227,8 +227,8 @@ char* infix2postfix_sf(char *infix) {
             p++;
 
             //transpose check
-            while (true) { //whle fix for multiple transpose check
-                    while (isspace(*p)) {
+            while (1) { //whle fix for multiple transpose check
+                    while (*p != '\0' && isspace(*p)) {
                         p++;
                     }
                 if (*p == '\'') {
@@ -368,12 +368,18 @@ matrix_sf *execute_script_sf(char *filename) {
     bst_sf *root = NULL;
 
     while (getline(&str, &max_line_size, file) != -1) {
-        char name = str[0];
+        char name = '\0';
+        for(int i = 0; i < strlen(str); i++) { //finding name if spaces in front
+            if (str[i] >= 'A' && str[i] <= 'Z') {
+                char name = str[i];
+                break;
+            }
+        }
         char *expr = strchr(str, '='); // go over definition
 
         //get to first digit
         expr += 1;
-        while (isspace(*expr)) {
+        while (*expr != '\0' && isspace(*expr)) {
             expr++;
         }
         //declaration vs computation

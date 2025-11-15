@@ -1,26 +1,101 @@
-==27854== Memcheck, a memory error detector
-==27854== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==27854== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==27854== Command: ./bin/execute_script script12
-==27854== 
-execute_script: src/hw7.c:56: print_matrix_sf: Assertion `mat != NULL' failed.
-==27854== 
-==27854== Process terminating with default action of signal 6 (SIGABRT)
-==27854==    at 0x4907B2C: __pthread_kill_implementation (pthread_kill.c:44)
-==27854==    by 0x4907B2C: __pthread_kill_internal (pthread_kill.c:78)
-==27854==    by 0x4907B2C: pthread_kill@@GLIBC_2.34 (pthread_kill.c:89)
-==27854==    by 0x48AE27D: raise (raise.c:26)
-==27854==    by 0x48918FE: abort (abort.c:79)
-==27854==    by 0x489181A: __assert_fail_base.cold (assert.c:96)
-==27854==    by 0x48A4516: __assert_fail (assert.c:105)
-==27854==    by 0x1094F1: print_matrix_sf (hw7.c:56)
-==27854==    by 0x109324: main (execute_script.c:9)
-==27854== 
-==27854== HEAP SUMMARY:
-==27854==     in use at exit: 0 bytes in 0 blocks
-==27854==   total heap usage: 5 allocs, 5 frees, 1,936 bytes allocated
-==27854== 
-==27854== All heap blocks were freed -- no leaks are possible
-==27854== 
-==27854== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-Aborted (core dumped)
+==31665== Memcheck, a memory error detector
+==31665== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==31665== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==31665== Command: ./bin/execute_script script12
+==31665== 
+==31665== Invalid read of size 4
+==31665==    at 0x109628: add_mats_sf (hw7.c:72)
+==31665==    by 0x109FB2: evaluate_expr_sf (hw7.c:310)
+==31665==    by 0x10A38A: execute_script_sf (hw7.c:391)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665==  Address 0x4 is not stack'd, malloc'd or (recently) free'd
+==31665== 
+==31665== 
+==31665== Process terminating with default action of signal 11 (SIGSEGV)
+==31665==  Access not within mapped region at address 0x4
+==31665==    at 0x109628: add_mats_sf (hw7.c:72)
+==31665==    by 0x109FB2: evaluate_expr_sf (hw7.c:310)
+==31665==    by 0x10A38A: execute_script_sf (hw7.c:391)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665==  If you believe this happened as a result of a stack
+==31665==  overflow in your program's main thread (unlikely but
+==31665==  possible), you can try to increase the size of the
+==31665==  main thread stack using the --main-stacksize= flag.
+==31665==  The main thread stack size used in this run was 8388608.
+==31665== 
+==31665== HEAP SUMMARY:
+==31665==     in use at exit: 5,158 bytes in 11 blocks
+==31665==   total heap usage: 12 allocs, 1 frees, 5,168 bytes allocated
+==31665== 
+==31665== 10 bytes in 1 blocks are still reachable in loss record 1 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x109A83: infix2postfix_sf (hw7.c:178)
+==31665==    by 0x109E39: evaluate_expr_sf (hw7.c:284)
+==31665==    by 0x10A38A: execute_script_sf (hw7.c:391)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 24 bytes in 1 blocks are still reachable in loss record 2 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x109462: insert_bst_sf (hw7.c:6)
+==31665==    by 0x10A366: execute_script_sf (hw7.c:388)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 48 bytes in 1 blocks are still reachable in loss record 3 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x109E59: evaluate_expr_sf (hw7.c:285)
+==31665==    by 0x10A38A: execute_script_sf (hw7.c:391)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 48 bytes in 2 blocks are still reachable in loss record 4 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x10949C: insert_bst_sf (hw7.c:12)
+==31665==    by 0x10A366: execute_script_sf (hw7.c:388)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 120 bytes in 1 blocks are still reachable in loss record 5 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x48EFD84: getdelim (iogetdelim.c:65)
+==31665==    by 0x10A3C4: execute_script_sf (hw7.c:370)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 340 bytes in 3 blocks are still reachable in loss record 6 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x10996E: create_matrix_sf (hw7.c:148)
+==31665==    by 0x10A34F: execute_script_sf (hw7.c:387)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 472 bytes in 1 blocks are still reachable in loss record 7 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x48EEE7E: __fopen_internal (iofopen.c:65)
+==31665==    by 0x48EEE7E: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+==31665==    by 0x10A23E: execute_script_sf (hw7.c:364)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== 4,096 bytes in 1 blocks are still reachable in loss record 8 of 8
+==31665==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==31665==    by 0x48EE1B4: _IO_file_doallocate (filedoalloc.c:101)
+==31665==    by 0x48FE523: _IO_doallocbuf (genops.c:347)
+==31665==    by 0x48FB883: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+==31665==    by 0x48EFE0F: getdelim (iogetdelim.c:77)
+==31665==    by 0x10A3C4: execute_script_sf (hw7.c:370)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665== 
+==31665== LEAK SUMMARY:
+==31665==    definitely lost: 0 bytes in 0 blocks
+==31665==    indirectly lost: 0 bytes in 0 blocks
+==31665==      possibly lost: 0 bytes in 0 blocks
+==31665==    still reachable: 5,158 bytes in 11 blocks
+==31665==         suppressed: 0 bytes in 0 blocks
+==31665== 
+==31665== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==31665== 
+==31665== 1 errors in context 1 of 1:
+==31665== Invalid read of size 4
+==31665==    at 0x109628: add_mats_sf (hw7.c:72)
+==31665==    by 0x109FB2: evaluate_expr_sf (hw7.c:310)
+==31665==    by 0x10A38A: execute_script_sf (hw7.c:391)
+==31665==    by 0x1093EE: main (execute_script.c:8)
+==31665==  Address 0x4 is not stack'd, malloc'd or (recently) free'd
+==31665== 
+==31665== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+Segmentation fault (core dumped)
