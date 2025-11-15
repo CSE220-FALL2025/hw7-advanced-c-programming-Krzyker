@@ -326,12 +326,40 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
     matrix_sf *result= stack[0]; //finished
     result -> name= name; //from arguments
     free(stack); free(post);
-    
+
     return result;
 }
 
 matrix_sf *execute_script_sf(char *filename) {
-   return NULL;
+    
+    char *str = NULL;
+    FILE *file = fopen(filename, "r");
+    size_t max_line_size = MAX_LINE_LEN; // defined in hw7.h
+
+    matrix_sf *result = NULL;
+    bst_sf *root = NULL;
+
+    while (!getline(&str, &max_line_size, file);) {
+        char name = str[0];
+        char *expr = str + 2; // go over definition
+
+        //declaration vs computation
+        if (str[8] == '[') { //declaration
+            matrix_sf *mat = create_matrix_sf(name, expr);
+            root = insert_bst_sf(mat, root);
+            result = mat;
+        } else { //computation
+            matrix_sf *mat = evaluate_expr_sf(name, expr, root);
+            root = insert_bst_sf(mat, root);
+            result = mat;
+        }
+    }
+
+    free(str);
+    fclose(file);
+    free_bst_sf(root);
+
+    return result;
 }
 
 // This is a utility function used during testing. Feel free to adapt the code to implement some of
