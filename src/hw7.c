@@ -339,12 +339,17 @@ matrix_sf *execute_script_sf(char *filename) {
     matrix_sf *result = NULL;
     bst_sf *root = NULL;
 
-    while (!getline(&str, &max_line_size, file);) {
+    while (getline(&str, &max_line_size, file) != -1) {
         char name = str[0];
-        char *expr = str + 2; // go over definition
+        char *expr = strchr(str, '='); // go over definition
 
+        //get to first digit
+        expr += 1;
+        while (*expr == ' ') {
+            expr++;
+        }
         //declaration vs computation
-        if (str[8] == '[') { //declaration
+        if (isdigit(*expr) /*size*/) { //declaration
             matrix_sf *mat = create_matrix_sf(name, expr);
             root = insert_bst_sf(mat, root);
             result = mat;
@@ -357,7 +362,6 @@ matrix_sf *execute_script_sf(char *filename) {
 
     free(str);
     fclose(file);
-    free_bst_sf(root);
 
     return result;
 }

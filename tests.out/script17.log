@@ -1,1 +1,26 @@
-sh: 1: valgrind: not found
+==23699== Memcheck, a memory error detector
+==23699== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23699== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23699== Command: ./bin/execute_script script17
+==23699== 
+execute_script: src/hw7.c:56: print_matrix_sf: Assertion `mat != NULL' failed.
+==23699== 
+==23699== Process terminating with default action of signal 6 (SIGABRT)
+==23699==    at 0x4907B2C: __pthread_kill_implementation (pthread_kill.c:44)
+==23699==    by 0x4907B2C: __pthread_kill_internal (pthread_kill.c:78)
+==23699==    by 0x4907B2C: pthread_kill@@GLIBC_2.34 (pthread_kill.c:89)
+==23699==    by 0x48AE27D: raise (raise.c:26)
+==23699==    by 0x48918FE: abort (abort.c:79)
+==23699==    by 0x489181A: __assert_fail_base.cold (assert.c:96)
+==23699==    by 0x48A4516: __assert_fail (assert.c:105)
+==23699==    by 0x1094F1: print_matrix_sf (hw7.c:56)
+==23699==    by 0x109324: main (execute_script.c:9)
+==23699== 
+==23699== HEAP SUMMARY:
+==23699==     in use at exit: 0 bytes in 0 blocks
+==23699==   total heap usage: 5 allocs, 5 frees, 1,936 bytes allocated
+==23699== 
+==23699== All heap blocks were freed -- no leaks are possible
+==23699== 
+==23699== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+Aborted (core dumped)

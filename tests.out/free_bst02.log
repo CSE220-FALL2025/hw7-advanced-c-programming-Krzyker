@@ -1,1 +1,22 @@
-sh: 1: valgrind: not found
+==23818== Memcheck, a memory error detector
+==23818== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==23818== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==23818== Command: ./bin/free_bst02
+==23818== 
+==23818== 
+==23818== HEAP SUMMARY:
+==23818==     in use at exit: 72 bytes in 6 blocks
+==23818==   total heap usage: 6 allocs, 0 frees, 72 bytes allocated
+==23818== 
+==23818== 72 bytes in 6 blocks are definitely lost in loss record 1 of 1
+==23818==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==23818==    by 0x1092F4: main (free_bst02.c:8)
+==23818== 
+==23818== LEAK SUMMARY:
+==23818==    definitely lost: 72 bytes in 6 blocks
+==23818==    indirectly lost: 0 bytes in 0 blocks
+==23818==      possibly lost: 0 bytes in 0 blocks
+==23818==    still reachable: 0 bytes in 0 blocks
+==23818==         suppressed: 0 bytes in 0 blocks
+==23818== 
+==23818== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

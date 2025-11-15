@@ -1,7 +1,7 @@
 {
   "id": "Criterion v2.4.1",
-  "passed": 29,
-  "failed": 41,
+  "passed": 26,
+  "failed": 44,
   "errored": 18,
   "skipped": 0,
   "test_suites": [
@@ -157,25 +157,34 @@
     },
     {
       "name": "base_free_bst",
-      "passed": 3,
-      "failed": 0,
+      "passed": 0,
+      "failed": 3,
       "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "free_bst03",
           "assertions": 1,
-          "status": "PASSED"
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:78: Valgrind reported errors -- see tests.out/free_bst03.log"
+          ]
         },
         {
           "name": "free_bst02",
           "assertions": 1,
-          "status": "PASSED"
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:78: Valgrind reported errors -- see tests.out/free_bst02.log"
+          ]
         },
         {
           "name": "free_bst01",
           "assertions": 1,
-          "status": "PASSED"
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:78: Valgrind reported errors -- see tests.out/free_bst01.log"
+          ]
         }
       ]
     },
